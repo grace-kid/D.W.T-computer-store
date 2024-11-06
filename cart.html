@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="icon" href="image/logo.jpg" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header -->
+    <header class="bg-pink-600 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <img src="image/logo.jpg" class="w-10 rounded-full" alt="logo">
+            <h1 class="text-xl font-bold">D.W.T</h1>
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/2349032662498?text=Hello,%20I'm%20interested%20in%20your%20product%20on%20the%20website!" 
+                   target="_blank" 
+                   class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
+                    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Logo" class="w-6 h-6">
+                </a>
+                <a href="index.html" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-full">Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="bg-yellow-500 text-center py-3 text-white font-semibold">
+        <p>BIGGEST SALE OF THE YEAR - Up to 85% Off</p>
+        <a href="#" class="underline">Shop Now</a>
+    </section>
+
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4 inline">Shopping Cart</h1>              <a href="cart.html" class=" inline-block bg-blue-500 text-white px-4 py-2 rounded-full ml-4 mb-2" >Cart🛒<span id="cartTotal" class="bg-red-500 rounded-full px-2">0</span></a>
+
+        <div id="cartContainer" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
+        <div class="text-right mt-4">
+            <span id="totalAmount" class="text-xl font-semibold">Total: ₦0</span>
+            <a id="whatsappLink" href="#" target="_blank" 
+               class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded-full">
+                Pay on WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const whatsappNumber = "2349032662498";
+
+        function loadCart() {
+            const cartContainer = document.getElementById("cartContainer");
+            const totalAmountElement = document.getElementById("totalAmount");
+            const whatsappLinkElement = document.getElementById("whatsappLink");
+            
+            // Retrieve cart items from local storage
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Clear the cart container
+            cartContainer.innerHTML = '';
+
+            let totalAmount = 0;
+            let productNames = [];
+
+            // Loop through cart items and render each product
+            cart.forEach((product, index) => {
+                const productCard = document.createElement("div");
+                productCard.className = "bg-white rounded-lg shadow-md p-4";
+
+                productCard.innerHTML = `
+                   <div class="flex"> <img src="${product.image}" alt="${product.name}" class="w-32 h-32 mr-2 object-cover inline">
+                   
+                   <div class="inline">
+                     <h2 class="mt-4 text-lg font-semibold">${product.name}</h2> <br>
+                     <span class="text-lg font-bold text-gray-800">₦${product.price.toLocaleString()}</span>
+                    <button onclick="removeFromCart(${index})" 
+                            class=" inline-block bg-red-500 text-white px-4 py-2 rounded-full">
+                       <a href="cart.html"> Remove</a>
+                    </button></div></div>
+                `;
+
+                cartContainer.appendChild(productCard);
+
+                // Add product price to total
+                totalAmount += product.price;
+                productNames.push(product.name);
+            });
+
+            // Update the total amount
+            totalAmountElement.textContent = `Total: ₦${totalAmount.toLocaleString()}`;
+            
+            // Generate WhatsApp message with product names and total
+            const whatsappMessage =` I want to pay for ${productNames.join(", ")} which is ₦${totalAmount.toLocaleString()}.`;
+            const whatsappLink =` https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Set WhatsApp link with the generated message
+            whatsappLinkElement.href = whatsappLink;
+        }
+
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // Remove product at specified index
+            localStorage.setItem("cart", JSON.stringify(cart)); // Update local storage
+
+            loadCart(); // Re-render the cart
+        }
+
+        function updateCartTotal() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartTotal = cart.length;
+
+    // Update the text content of the cart total element
+    const cartCountElement = document.getElementById("cartTotal");
+    if (cartCountElement) {
+        cartCountElement.textContent = cartTotal;
+    }
+};
+
+        // Call loadCart when the page loads
+        document.addEventListener("DOMContentLoaded", loadCart);
+        document.addEventListener("DOMContentLoaded", function() {
+     // Render your products
+    updateCartTotal(); // Update cart total on page load
+});
+    </script>
+</body>
+</html>

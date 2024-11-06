@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/logo.jpg" type="image/x-icon">
+    <title>D.W.T computer store</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#button").click(function(){
+    $("#p").toggle();
+  });
+});
+
+
+$(document).ready(function(){
+  $(".info").click(function(){
+    $(".infom").slideToggle("slow");
+  });
+});
+</script>
+</script>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header -->
+    <header class="bg-pink-600 text-white py-2">
+        <div class="container mx-auto flex justify-between items-center pl-2">
+            <img src="image/logo.jpg" class="w-10 rounded-full" alt="logo">
+            <h1 class="text-xl font-bold">D.W.T</h1>
+            <div class="flex items-center space-x-4">
+                
+                <a href="https://wa.me/2349032662498?text=Hello,%20I'm%20interested%20in%20your%20product%20on%20the%20website!" 
+           target="_blank" 
+           class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-lg">
+            <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Logo" class="w-6 h-6">
+            
+        </a>
+              <a href="cart.html" class=" inline-block bg-blue-500 text-white px-4 py-2 rounded-full" >Cart🛒<span id="cartTotal" class="bg-red-500 rounded-full px-2">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="bg-yellow-500 text-center  text-white font-semibold">
+        <p>BIGGEST SALE OF THE YEAR - Up to 85% Off</p>
+        <a href="cart.html" class="underline">Shop Now</a>
+    </section>
+<input type="text" id="brandSearch" placeholder="Search by brand" 
+           class="w-full p-2 border border-gray-300 rounded " 
+           oninput="filterByBrand()">
+
+    
+
+    <!-- Product List -->
+    <main class="container mx-auto px-4 py-2">
+        <!-- Filters and Sorting -->
+        <div class="flex justify-between items-center ">
+            
+          
+        <select id="sort" onchange="sortProducts()" class="bg-pink-600 text-white py-2 px-4 rounded">
+            <option value="default"  class="bg-pink-600 text-white py-2 px-4 rounded">Sort</option>
+            <option value="asc">Price: Low to High</option>
+            <option value="desc">Price: High to Low</option>
+        </select>
+          <button id="button"  class="bg-pink-500 text-white px-4 py-2 rounded-full ml-2"> Filter</button>
+        <!-- Price Filter Inputs -->
+        </div>
+      <div class="mt-4 hidden" id="p">
+            
+            <input type="number" id="minPrice" class="border rounded p-2" placeholder="Min Price:">
+            
+            <input type="number" id="maxPrice" class="border rounded p-2" placeholder="Max Price:">
+            <button onclick="filterProducts()" class="bg-blue-500 text-white px-4 py-2 rounded-full ml-2">Filter</button>
+        </div> 
+      <div id="productContainer"></div>
+        <!-- Product Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" >
+          
+            <!-- Product 1 -->
+          <!-- <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-center">
+                    <span class="bg-pink-600 text-white px-2 py-1 rounded text-xs font-semibold">Konga Now</span>
+                    <button class="text-gray-500">❤️</button>
+                </div>
+                <img src="https://via.placeholder.com/150" alt="Product Image" class="w-full h-48 object-cover mt-2">
+                <h2 class="mt-4 text-lg font-semibold">Lenovo Thinkpad E14</h2>
+                <div class="flex items-center space-x-2 mt-1">
+                    <span class="text-lg font-bold text-gray-800">₦731,900</span>
+                    <span class="line-through text-gray-500">₦1,052,600</span>
+                    <span class="bg-red-600 text-white px-2 py-1 rounded text-xs">-30%</span>
+                </div>
+                <p class="text-pink-600 text-sm mt-1">Same Day Delivery Lagos | Abuja</p>
+                <p class="text-gray-500 text-xs mt-1">Sold by Konga</p>
+            </div>
+
+            
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-center">
+                    <span class="bg-pink-600 text-white px-2 py-1 rounded text-xs font-semibold">Konga Now</span>
+                    <button class="text-gray-500">❤️</button>
+                </div>
+                <img src="https://via.placeholder.com/150" alt="Product Image" class="w-full h-48 object-cover mt-2">
+                <h2 class="mt-4 text-lg font-semibold">HP Probook 450 G9 Notebook</h2>
+                <div class="flex items-center space-x-2 mt-1">
+                    <span class="text-lg font-bold text-gray-800">₦1,076,015</span>
+                    <span class="line-through text-gray-500">₦1,191,800</span>
+                    <span class="bg-red-600 text-white px-2 py-1 rounded text-xs">-10%</span>
+                </div>
+                <p class="text-pink-600 text-sm mt-1">Same Day Delivery Lagos | Abuja</p>
+                <p class="text-gray-500 text-xs mt-1">Sold by Konga</p>
+            </div>
+        </div>
+    </main> -->
+          <button id="seeMoreButton" onclick="loadMoreProducts()" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full">
+            See More
+        </button>
+          
+
+    <!-- Footer --> 
+     <button class="info bg-pink-600 inline rounded-full ">About us</button>
+   <footer class=" infom bg-gray-100 font-bold hidden" >
+    <h1 class="text-pink-500">DANNYWHITE  TECH</h1>
+    <p>Looking for top-quality laptops and phones at unbeatable prices? look no further, DWT offers the latest tech with exceptional customer service Whether you need a powerful laptop for work or a sleek phone to stay connected, we've got the perfect device for you. Fast shipping, competitive pricing, and personalized support—shop with us and experience tech made easy! Your dream laptops all available at an affordable price,
+      
+        <ul>
+            <li>Apple </li>
+            <li>Hp</li>
+            <li>Samsung</li>
+            <li>Dell</li>
+            <li>Toshiba e.t.c</li>
+        </ul>
+        DWT"home of quality gadgets"
+        Info:09032662498</p>
+</footer>
+<p class="text-center text-gray-500 text-xs mt-4 ">
+    &copy;2024 Grace Tech. All rights reserved.
+</p>
+
+  <script>
+ const products = [
+    {
+        id: 1,
+        brand:"Toshiba",
+        name: "Intel Atom",
+        price: 160000,
+        originalPrice: 200000,
+        discount: 10,
+        image: "image/toshiba.jpg",
+        screen:"No" ,
+        ram: "2GB" ,
+        finger:"No" ,
+        ghz: " 1.60" ,
+        storage: "HDD 320" ,
+        gen:"6th"
+    },
+    {
+        id: 2,
+        brand:"HP",
+        name: "Intel Core i5",
+        price: 200000,
+        originalPrice: 22000,
+        discount: 10,
+        image: "image/hp2.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " 2.50" ,
+        storage: "SSD 256" ,
+        gen:"6th"
+    },
+    {
+        id: 3,
+        brand:"HP",
+        name: "HP Conpaq",
+        price: 100000,
+        originalPrice: 120000,
+        discount: 10,
+        image: "image/hp3.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " 1.60" ,
+        storage: "HDD 250" ,
+        gen:"null"
+    },
+    {
+        id: 4,
+        brand:"HP",
+        name: "Intel Core i5",
+        price: 200000,
+        originalPrice: 220000,
+        discount: 10,
+        image: "image/hp4.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: "2.40" ,
+        storage: "HDD 320" ,
+        gen:"null"
+    },
+    {
+        id: 5,
+        brand:"HP",
+        name: "Intel Core i5",
+        price: 200000,
+        originalPrice: 220000,
+        discount: 10,
+        image: "image/hp5.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " 2.50" ,
+        storage: "HDD 320" ,
+        gen:"null"
+    },
+    {
+        id: 6,
+        brand:"lenovo",
+        name: "Intel Celeron",
+        price: 19000,
+        originalPrice: 200000,
+        discount: 10,
+        image: "image/lonovo1.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " 2.16" ,
+        storage: "HDD 500" ,
+        gen:"6th"
+    },
+    {
+        id: 7,
+        brand:"HP",
+        name: "Intel core i5",
+        price: 210000,
+        originalPrice: 230000,
+        discount: 10,
+        image: "image/hp6.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " 2.60" ,
+        storage: "SSD 256" ,
+        gen:"null"
+    },
+    {
+        id: 8,
+        brand:"HP",
+        name: "Intel core i3",
+        price: 180000,
+        originalPrice: 200000,
+        discount: 10,
+        image: "image/hp7.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " 2.40" ,
+        storage: "HDD 320" ,
+        gen:"null"
+    },
+    {
+        id: 9,
+        brand:"HP",
+        name: "Intel core i3",
+        price: 180000,
+        originalPrice: 200000,
+        discount: 10,
+        image: "image/hp8.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " 2.40" ,
+        storage: "HDD 320" ,
+        gen:"null"
+    },
+    {
+        id: 10,
+        brand:"Toshiba",
+        name: "Intel core i3",
+        price: 170000,
+        originalPrice: 200000,
+        discount: 10,
+        image: "image/toshiba1.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " 2.53" ,
+        storage: "HDD 250" ,
+        gen:"null"
+    },
+    {
+        id: 11,
+        brand:"HP",
+        name: "Intel core i5",
+        price: 210000,
+        originalPrice: 230000,
+        discount: 10,
+        image: "image/hp9.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " 2.60" ,
+        storage: "HDD 320" ,
+        gen:"null"
+    },
+    {
+        id: 12,
+        brand:"HP",
+        name: "Intel core i5",
+        price: 250000,
+        originalPrice: 280000,
+        discount: 10,
+        image: "image/hp11.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " 2.30" ,
+        storage: "SSD 256" ,
+        gen:"null"
+    },
+    {
+        id: 13,
+        brand:"HP",
+        name: "HP Intel ",
+        price: 300000,
+        originalPrice: 320000,
+        discount: 10,
+        image: "image/lap13.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "SSD 512" ,
+        gen:"null"
+    },
+    {
+        id: 14,
+        brand:"Dell",
+        name: "Dell",
+        price: 360000,
+        originalPrice: 380000,
+        discount: 10,
+        image: "image/lap14.jpg",
+        screen:"No" ,
+        ram: "16GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "SSD 512" ,
+        gen:"null"
+    },
+    {
+        id: 15,
+        brand:"HP",
+        name: "HP Intel ",
+        price: 370000,
+        originalPrice: 380000,
+        discount: 10,
+        image: "image/lap15.jpg",
+        screen:"yes" ,
+        ram: "16GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "SSD 512" ,
+        gen:"null"
+    },
+    {
+        id: 16,
+        brand:"lenovo",
+        name: "Lenovo",
+        price: 100000,
+        originalPrice: 120000,
+        discount: 10,
+        image: "image/lap16.jpg",
+        screen:"No" ,
+        ram: "6GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "HDD 500" ,
+        gen:"null"
+    },
+    {
+        id: 17,
+        brand:"HP",
+        name: "Intel core i5",
+        price: 250000,
+        originalPrice: 280000,
+        discount: 10,
+        image: "image/lap17.jpg",
+        screen:"No" ,
+        ram: "16GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "SSD 512" ,
+        gen:"null"
+    },
+    {
+        id: 18,
+        brand:"HP",
+        name: "Intel core i7",
+        price: 400000,
+        originalPrice: 420000,
+        discount: 10,
+        image: "image/lap18.jpg",
+        screen:"No" ,
+        ram: "16GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "SSD 512" ,
+        gen:"null"
+    },
+    {
+        id: 19,
+        brand:"Dell",
+        name: "Dell latitude",
+        price: 300000,
+        originalPrice: 320000,
+        discount: 10,
+        image: "image/lap19.jpg",
+        screen:"No" ,
+        ram: "16GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "HDD 500" ,
+        gen:"null"
+    },
+    {
+        id: 20,
+        brand:"HP",
+        name: "HP compac",
+        price: 80000,
+        originalPrice: 90000,
+        discount: 10,
+        image: "image/lap20.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "HDD 250" ,
+        gen:"null"
+    },
+    {
+        id: 21,
+        brand:"HP",
+        name: "HP",
+        price: 90000,
+        originalPrice: 100000,
+        discount: 10,
+        image: "image/lap21.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "HDD 250" ,
+        gen:"null"
+    },
+    {
+        id: 22,
+        brand:"HP",
+        name: " HP Intel ",
+        price: 100000,
+        originalPrice: 120000,
+        discount: 10,
+        image: "image/lap22.jpg",
+        screen:"No" ,
+        ram: "4GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "HDD 250" ,
+        gen:"null"
+    },
+    {
+        id: 23,
+        brand:"lenovo",
+        name: "Lenovo T440",
+        price: 280000,
+        originalPrice: 290000,
+        discount: 10,
+        image: "image/lap23.jpg",
+        screen:"yes" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " 2.30" ,
+        storage: "HDD 1000" ,
+        gen:"null"
+    },
+    {
+        id: 24,
+        brand:"HP",
+        name: "HP Elitebook 840 core i5",
+        price: 190000,
+        originalPrice: 200000,
+        discount: 10,
+        image: "image/lap24.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "HDD 500" ,
+        gen:"null"
+    },
+    {
+        id: 25,
+        brand:"HP",
+        name: "HP core i7",
+        price: 400000,
+        originalPrice: 420000,
+        discount: 10,
+        image: "image/lap25.jpg",
+        screen:"yes" ,
+        ram: "16GB" ,
+        finger:"No" ,
+        ghz: " null" ,
+        storage: "SD 512" ,
+        gen:"null"
+    },
+    {
+        id: 26,
+        brand:"HP",
+        name: "HP core i7",
+        price: 350000,
+        originalPrice: 380000,
+        discount: 10,
+        image: "image/lap26.jpg",
+        screen:"No" ,
+        ram: "8GB" ,
+        finger:"yes" ,
+        ghz: " null" ,
+        storage: "SSD 512" ,
+        gen:"null"
+    },
+    // Add more products as needed
+];
+
+let productsDisplayed = 10;
+let filteredProducts = [...products]; // Create a copy for filtered products
+
+// Render Products
+function renderProducts() {
+    const container = document.getElementById("productContainer");
+    container.innerHTML = '';
+
+    filteredProducts.slice(0, productsDisplayed).forEach(product => {
+        const productCard = document.createElement("div");
+        productCard.className = "bg-white rounded-lg shadow-md p-4 m-4";
+
+        const whatsappMessage =` I want to buy ${product.name} for ₦${product.price.toLocaleString()}.`;
+        const whatsappLink =` https://wa.me/2349032662498?text=${encodeURIComponent(whatsappMessage)}`;
+
+        productCard.innerHTML = `
+            <div class="flex justify-between items-center">
+              <a href="${whatsappLink}" target="_blank" 
+               class="bg-pink-600 text-white px-2 py-1 rounded text-xs font-semibold">
+                buy now
+            </a>
+                <button  onclick="addToCart(${product.id})"  class="text-gray-500">❤️</button>
+            </div>
+            
+            <div class="md:flex">
+                <div class="md:px-2">
+                  <img  src="${product.image}" alt="${product.name}" class="img1 w-full md:px-2 md-w-48 h-48 object-cover mt-2 inline">
+    
+                </div>
+                <div>
+                    <h2 class="mt-4 text-lg font-semibold">${product.name}</h2>
+            <div class="flex items-center space-x-2 mt-1">
+                <span class="text-lg font-bold text-gray-800">₦${product.price.toLocaleString()}</span>
+                <span class="line-through text-gray-500">₦${product.originalPrice.toLocaleString()}</span>
+                <span class="bg-red-600 text-white px-2 py-1 rounded text-xs">-${product.discount}%</span>
+            </div>
+            <p class="text-pink-600 text-sm mt-1">Brand ${product.brand}</p>
+            <div id="infom" class="infom   ">
+            <span class="text-gray-500 text-sm mt-1">Storage ${product.storage}</span>
+            <span class="text-gray-500 text-sm mt-1">Generation ${product.gen}</span>
+            <span class="text-gray-500 text-sm mt-1">Ram ${product.ram}</span>
+            <span class="text-gray-500 text-sm mt-1">ghz ${product.ghz}</span>
+            <span class="text-gray-500 text-sm mt-1">Screen touch ${product.screen}</span>
+            <span class="text-gray-500 text-sm mt-1">Finger print ${product.finger}</span>
+           
+            </div>
+            <button onclick="addToCart(${product.id})" 
+                    class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-full">
+                <a href="index.html">Add to Cart</a>
+            </button>
+            <a href="${whatsappLink}" target="_blank" 
+               class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded-full">
+                <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Logo" class="w-6 h-6 inline">
+              <h2 class="inline">Order</h2>
+            </a>
+            </div>
+            </div>
+            
+        `;
+
+        container.appendChild(productCard);
+    });
+
+    const seeMoreButton = document.getElementById("seeMoreButton");
+    if (productsDisplayed >= filteredProducts.length) {
+        seeMoreButton.style.display = "none";
+    } else {
+        seeMoreButton.style.display = "block";
+    }
+}
+
+// Filter Products by Price Range
+function filterProducts() {
+    const minPrice = parseInt(document.getElementById("minPrice").value) || 0;
+    const maxPrice = parseInt(document.getElementById("maxPrice").value) || Infinity;
+
+    filteredProducts = products.filter(product => product.price >= minPrice && product.price <= maxPrice);
+    productsDisplayed = 2; // Reset displayed count for filtered results
+
+    renderProducts();
+};
+
+// Load More Products
+function loadMoreProducts() {
+    productsDisplayed += 2;
+    renderProducts();
+};
+
+// Sort Products Function
+function sortProducts() {
+    const sortOrder = document.getElementById("sort").value;
+
+    if (sortOrder === "asc") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "desc") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+    } else {
+        filteredProducts = [...products];
+    }
+
+    renderProducts();
+};
+
+// Add to Cart Function
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(`${product.name} has been added to the cart!`);
+};
+
+          function filterByBrand() {
+    const searchInput = document.getElementById("brandSearch").value.toLowerCase();
+    filteredProducts = products.filter(product => product.brand.toLowerCase().includes(searchInput));
+    productsDisplayed = 4; // Reset displayed count for filtered results
+    renderProducts();
+};
+
+function updateCartTotal() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartTotal = cart.length;
+
+    // Update the text content of the cart total element
+    const cartCountElement = document.getElementById("cartTotal");
+    if (cartCountElement) {
+        cartCountElement.textContent = cartTotal;
+    }
+};
+
+// Initialize Products on Page Load
+document.addEventListener("DOMContentLoaded", function() {
+    renderProducts();  // Render your products
+    updateCartTotal(); // Update cart total on page load
+});     
+          
+  </script>
+
+</body>
+</html>
