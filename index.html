@@ -26,7 +26,7 @@ $(document).ready(function(){
 <body class="bg-gray-100 font-sans">
 
     <!-- Header -->
-    <header class="bg-pink-600 text-white py-2">
+    <header class="bg-orange-600 text-white py-2">
         <div class="container mx-auto flex justify-between items-center pl-2">
             <img src="image/logo.jpg" class="w-10 rounded-full" alt="logo">
             <h1 class="text-xl font-bold">D.W.T</h1>
@@ -60,12 +60,12 @@ $(document).ready(function(){
         <div class="flex justify-between items-center ">
             
           
-        <select id="sort" onchange="sortProducts()" class="bg-pink-600 text-white py-2 px-4 rounded">
-            <option value="default"  class="bg-pink-600 text-white py-2 px-4 rounded">Sort</option>
+        <select id="sort" onchange="sortProducts()" class="bg-orange-600 text-white py-2 px-4 rounded">
+            <option value="default"  class="bg-orange-600 text-white py-2 px-4 rounded">Sort</option>
             <option value="asc">Price: Low to High</option>
             <option value="desc">Price: High to Low</option>
         </select>
-          <button id="button"  class="bg-pink-500 text-white px-4 py-2 rounded-full ml-2"> Filter</button>
+          <button id="button"  class="bg-orange-500 text-white px-4 py-2 rounded-full ml-2"> Filter</button>
         <!-- Price Filter Inputs -->
         </div>
       <div class="mt-4 hidden" id="p">
@@ -82,7 +82,7 @@ $(document).ready(function(){
             <!-- Product 1 -->
           <!-- <div class="bg-white rounded-lg shadow-md p-4">
                 <div class="flex justify-between items-center">
-                    <span class="bg-pink-600 text-white px-2 py-1 rounded text-xs font-semibold">Konga Now</span>
+                    <span class="bg-orange-600 text-white px-2 py-1 rounded text-xs font-semibold">Konga Now</span>
                     <button class="text-gray-500">❤️</button>
                 </div>
                 <img src="https://via.placeholder.com/150" alt="Product Image" class="w-full h-48 object-cover mt-2">
@@ -120,9 +120,9 @@ $(document).ready(function(){
           
 
     <!-- Footer --> 
-     <button class="info bg-pink-600 inline rounded-full ">About us</button>
+     <button class="info bg-orange-600 inline rounded-full ">About us</button>
    <footer class=" infom bg-gray-100 font-bold hidden" >
-    <h1 class="text-pink-500">DANNYWHITE  TECH</h1>
+    <h1 class="text-orange-500">DANNYWHITE  TECH</h1>
     <p>Looking for top-quality laptops and phones at unbeatable prices? look no further, DWT offers the latest tech with exceptional customer service Whether you need a powerful laptop for work or a sleek phone to stay connected, we've got the perfect device for you. Fast shipping, competitive pricing, and personalized support—shop with us and experience tech made easy! Your dream laptops all available at an affordable price,
       
         <ul>
@@ -552,7 +552,7 @@ function renderProducts() {
         productCard.innerHTML = `
             <div class="flex justify-between items-center">
               <a href="${whatsappLink}" target="_blank" 
-               class="bg-pink-600 text-white px-2 py-1 rounded text-xs font-semibold">
+               class="bg-orange-600 text-white px-2 py-1 rounded text-xs font-semibold">
                 buy now
             </a>
                 <button  onclick="addToCart(${product.id})"  class="text-gray-500">❤️</button>
@@ -570,7 +570,7 @@ function renderProducts() {
                 <span class="line-through text-gray-500">₦${product.originalPrice.toLocaleString()}</span>
                 <span class="bg-red-600 text-white px-2 py-1 rounded text-xs">-${product.discount}%</span>
             </div>
-            <p class="text-pink-600 text-sm mt-1">Brand ${product.brand}</p>
+            <p class="text-orange-600 text-sm mt-1">Brand ${product.brand}</p>
             <div id="infom" class="infom   ">
             <span class="text-gray-500 text-sm mt-1">Storage ${product.storage}</span>
             <span class="text-gray-500 text-sm mt-1">Generation ${product.gen}</span>
